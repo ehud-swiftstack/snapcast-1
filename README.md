@@ -16,18 +16,19 @@ This image contains both server and client. The decision between server and clie
 
 Running the client:
 ```
-   docker run
-   -e SNAPSERVER_URL=172.17.0.4
+   docker run \
+   -e SNAPSERVER_URL=172.17.0.4 \
+   --device /dev/snd \
    ehudkaldor/snapcast:latest
 ```
 
 when running as server, you can provide a few volumes to be used for specific purposes:
 ```
-  docker run
-  -d
-  --name snapcast
-  -p 1704:1704                                  # server port
-  -p 1705:1705                                  # remote control port
-  -v <a dir with your fifo stream files>:/tmp   # this is where your fifo stream are
+  docker run \
+  -d \
+  --name snapcast \
+  -p 1704:1704 \
+  -p 1705:1705 \
+  -v <a dir with your fifo stream files>:/tmp \
   ehudkaldor/snapcast:latest
   ```
